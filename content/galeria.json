@@ -1,0 +1,16 @@
+{
+  "fotos": [
+    {
+      "imagem": "img/fotos/oficina-1.jpg",
+      "legenda": "Integrantes das equipes montando atividades com as crianças"
+    },
+    {
+      "imagem": "img/fotos/oficina-2.jpg",
+      "legenda": "Crianças colocando a mão na massa em um encontro do Mini S"
+    },
+    {
+      "imagem": "img/fotos/equipes.jpg",
+      "legenda": "Equipes de robótica da Escola SESI de Jaraguá do Sul"
+    }
+  ]
+}

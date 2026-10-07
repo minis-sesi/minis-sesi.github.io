@@ -1,0 +1,23 @@
+{
+  "total_encontros": 15,
+  "email": "",
+  "cidade": "Escola SESI · Jaraguá do Sul / SC",
+  "material_completo": "pdf/mini-s-completo.pdf",
+  "apoiadores": [
+    {
+      "nome": "PIAL",
+      "detalhe": "Aplicação nas unidades de SC",
+      "logo": ""
+    },
+    {
+      "nome": "SESI Santa Catarina",
+      "detalhe": "Apoio institucional",
+      "logo": ""
+    },
+    {
+      "nome": "Sicredi",
+      "detalhe": "Patrocínio",
+      "logo": ""
+    }
+  ]
+}

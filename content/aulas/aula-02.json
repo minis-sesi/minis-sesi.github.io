@@ -1,0 +1,39 @@
+{
+  "numero": 2,
+  "titulo": "Caça às Formas",
+  "equipe": "",
+  "serie": "S Robots Explorer",
+  "modulo": "Formas e comandos",
+  "resumo": "O Bolt encontra um caderno antigo cheio de desenhos. As crianças caçam formas escondidas e seguem comandos de setas para revelar uma figura em pixels.",
+  "idade": "",
+  "tempo": "",
+  "habilidades": [
+    "Observação",
+    "Raciocínio lógico",
+    "Sequência de comandos"
+  ],
+  "objetivos": [
+    "Identificar quadrado, círculo, triângulo e estrela em desenhos do dia a dia",
+    "Seguir instruções passo a passo, como um robô segue um programa"
+  ],
+  "roteiro": [
+    "Leitura da história: o caderno de projetos do Bolt",
+    "Desenho 01: caça às formas na locomotiva",
+    "Desenho 02: caça às formas no foguete",
+    "Adivinha quem sou? Pixel art com comandos de setas"
+  ],
+  "materiais": [
+    "Atividade impressa (1 por criança)",
+    "Lápis de cor nas cores indicadas",
+    "Lápis grafite"
+  ],
+  "pdf": "pdf/missao-02-caca-as-formas.pdf",
+  "capa": "",
+  "paginas": [
+    "img/paginas/p11.jpg",
+    "img/paginas/p12.jpg",
+    "img/paginas/p13.jpg",
+    "img/paginas/p14.jpg"
+  ],
+  "video": ""
+}

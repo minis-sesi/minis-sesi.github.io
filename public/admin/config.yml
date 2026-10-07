@@ -1,0 +1,121 @@
+# Painel de administração do Mini S (Sveltia CMS)
+# Cada vez que alguém salva aqui, o GitHub publica o site de novo sozinho (~2 minutos).
+
+backend:
+  name: github
+  repo: minis-sesi/minis-sesi.github.io
+  branch: main
+  commit_messages:
+    create: "Adiciona {{collection}}: {{slug}}"
+    update: "Atualiza {{collection}}: {{slug}}"
+    delete: "Remove {{collection}}: {{slug}}"
+    uploadMedia: "Envia arquivo {{path}}"
+    deleteMedia: "Remove arquivo {{path}}"
+
+# PDFs e imagens enviados pelo painel ficam em public/uploads
+media_folder: public/uploads
+public_folder: /uploads
+
+
+site_url: https://minis-sesi.github.io/
+display_url: https://minis-sesi.github.io/
+
+collections:
+  - name: aulas
+    label: Aulas
+    label_singular: Aula
+    description: "Cada aula é um encontro do Mini S. Basta preencher o número, o título e enviar o PDF."
+    folder: content/aulas
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: "aula-{{numero}}"
+    identifier_field: titulo
+    summary: "Aula {{numero}} · {{titulo}}"
+    sortable_fields: [numero, titulo, equipe]
+    fields:
+      - { name: numero, label: "Número da aula", widget: number, value_type: int, min: 1, max: 50, hint: "Posição na trilha (1 a 15). Define a ordem no site." }
+      - { name: titulo, label: "Título", widget: string, hint: "Ex.: Os Projetos Perdidos" }
+      - name: equipe
+        label: "Equipe que criou"
+        widget: relation
+        collection: equipes
+        search_fields: [nome]
+        value_field: nome
+        display_fields: [nome]
+        required: false
+      - { name: pdf, label: "PDF da aula", widget: file, hint: "O arquivo que o professor vai baixar e imprimir." }
+      - { name: resumo, label: "Resumo", widget: text, hint: "2 ou 3 frases contando a história/desafio da aula." }
+      - { name: serie, label: "Série / missão", widget: string, required: false, hint: "Ex.: S Robots Explorer, F1 Tech Challenge" }
+      - { name: modulo, label: "Módulo", widget: string, required: false, hint: "Ex.: Representação de formas" }
+      - { name: idade, label: "Idade recomendada", widget: string, required: false, hint: "Ex.: 6 a 9 anos" }
+      - { name: tempo, label: "Tempo estimado", widget: string, required: false, hint: "Ex.: 20 a 30 min" }
+      - { name: habilidades, label: "Habilidades desenvolvidas", widget: list, required: false, hint: "Separe por vírgula. Ex.: Observação, Criatividade" }
+      - { name: objetivos, label: "Objetivos", widget: list, required: false, field: { name: item, label: Objetivo, widget: string } }
+      - { name: roteiro, label: "Roteiro (passo a passo da aula)", widget: list, required: false, field: { name: item, label: Etapa, widget: string } }
+      - { name: materiais, label: "Materiais necessários", widget: list, required: false, field: { name: item, label: Material, widget: string } }
+      - { name: capa, label: "Imagem de capa (opcional)", widget: image, required: false, hint: "Se ficar vazio, o site usa a primeira página do PDF." }
+      - name: paginas
+        label: "Imagens das páginas (opcional)"
+        widget: list
+        required: false
+        hint: "Pode deixar vazio: o site gera a prévia das páginas a partir do PDF."
+        field: { name: imagem, label: Página, widget: image }
+      - { name: video, label: "Vídeo no YouTube (opcional)", widget: string, required: false, hint: "Cole o link do vídeo. Pode ser 'não listado'." }
+      - { name: publicada, label: "Mostrar no site", widget: boolean, default: true, required: false, hint: "Desmarque para esconder a aula sem apagar." }
+
+  - name: equipes
+    label: Equipes
+    label_singular: Equipe
+    folder: content/equipes
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: "{{nome}}"
+    identifier_field: nome
+    summary: "{{nome}} · {{categoria}}"
+    fields:
+      - { name: nome, label: "Nome da equipe", widget: string }
+      - { name: categoria, label: "Categoria / competição", widget: string, required: false, hint: "Ex.: FIRST Tech Challenge, F1 in Schools" }
+      - { name: descricao, label: "Descrição", widget: text }
+      - { name: instagram, label: "Instagram", widget: string, required: false, hint: "Só o usuário, sem @. Ex.: s_robots.ftc" }
+      - { name: logo, label: "Logo (opcional)", widget: image, required: false }
+      - { name: ordem, label: "Ordem de exibição", widget: number, value_type: int, default: 9, required: false }
+
+  - name: paginas
+    label: Site
+    files:
+      - name: galeria
+        label: Galeria de fotos
+        file: content/galeria.json
+        format: json
+        fields:
+          - name: fotos
+            label: Fotos
+            label_singular: Foto
+            widget: list
+            summary: "{{legenda}}"
+            fields:
+              - { name: imagem, label: Foto, widget: image }
+              - { name: legenda, label: Legenda, widget: string, required: false }
+
+      - name: site
+        label: Configurações gerais
+        file: content/site.json
+        format: json
+        fields:
+          - { name: total_encontros, label: "Total de encontros planejados", widget: number, value_type: int, min: 1, max: 50, hint: "Aulas ainda não publicadas aparecem como 'Em breve'." }
+          - { name: email, label: "E-mail de contato", widget: string, required: false, hint: "Se preenchido, aparece na aba Contatos." }
+          - { name: cidade, label: "Local", widget: string, required: false }
+          - { name: material_completo, label: "PDF com todo o material (opcional)", widget: file, required: false }
+          - name: apoiadores
+            label: Parceiros e apoiadores
+            label_singular: Apoiador
+            widget: list
+            summary: "{{nome}}"
+            fields:
+              - { name: nome, label: Nome, widget: string }
+              - { name: detalhe, label: "Detalhe", widget: string, required: false, hint: "Ex.: Patrocínio" }
+              - { name: logo, label: "Logo (opcional)", widget: image, required: false }

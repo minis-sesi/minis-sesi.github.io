@@ -1,0 +1,45 @@
+{
+  "numero": 1,
+  "titulo": "Os Projetos Perdidos",
+  "equipe": "",
+  "serie": "S Robots Explorer",
+  "modulo": "Representação de formas",
+  "resumo": "Os projetos dos antigos inventores sumiram da oficina! As crianças ajudam o Bolt a reconstruí-los ligando pontos, do plano ao 3D.",
+  "idade": "6 a 9 anos",
+  "tempo": "20 a 30 min",
+  "habilidades": [
+    "Observação",
+    "Coordenação",
+    "Criatividade",
+    "Visão espacial"
+  ],
+  "objetivos": [
+    "Reconhecer formas e reconstruir figuras ligando pontos em sequência",
+    "Perceber profundidade e volume ao passar do desenho plano para o 3D",
+    "Persistir em desafios de dificuldade crescente, um passo de cada vez"
+  ],
+  "roteiro": [
+    "Leitura da história em quadrinhos: o mistério dos projetos perdidos",
+    "Projetos 01 e 02: a engrenagem perdida e o mini foguete",
+    "Projetos 03 e 04: a caixa secreta e a casa dos inventores (3D)",
+    "Desafio final: o robô perdido",
+    "Fechamento: Cantinho da Sabedoria e marcação das conquistas"
+  ],
+  "materiais": [
+    "Atividade impressa (1 por criança)",
+    "Lápis e borracha",
+    "Lápis de cor"
+  ],
+  "pdf": "pdf/missao-01-projetos-perdidos.pdf",
+  "capa": "",
+  "paginas": [
+    "img/paginas/p04.jpg",
+    "img/paginas/p05.jpg",
+    "img/paginas/p06.jpg",
+    "img/paginas/p07.jpg",
+    "img/paginas/p08.jpg",
+    "img/paginas/p09.jpg",
+    "img/paginas/p10.jpg"
+  ],
+  "video": ""
+}

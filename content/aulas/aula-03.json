@@ -1,0 +1,34 @@
+{
+  "numero": 3,
+  "titulo": "O Desenho Fantasma",
+  "equipe": "Scuderia S ATLAS",
+  "serie": "F1 Tech Challenge",
+  "modulo": "Design e engenharia",
+  "resumo": "Um vírus apagou o projeto do novo carro da escuderia! As crianças acompanham a investigação do Bolt e dão vida ao carro de Fórmula 1 com suas próprias cores.",
+  "idade": "",
+  "tempo": "",
+  "habilidades": [
+    "Criatividade",
+    "Design",
+    "Interpretação de história"
+  ],
+  "objetivos": [
+    "Conhecer como uma equipe de engenharia projeta um carro",
+    "Criar uma identidade visual própria para o carro de F1"
+  ],
+  "roteiro": [
+    "Etapa 1: história em quadrinhos “O desenho fantasma”",
+    "Etapa 2: “Dê vida ao carro”, colorir e personalizar o F1"
+  ],
+  "materiais": [
+    "Atividade impressa (1 por criança)",
+    "Lápis de cor ou canetinhas"
+  ],
+  "pdf": "pdf/missao-03-f1-tech-challenge.pdf",
+  "capa": "",
+  "paginas": [
+    "img/paginas/p15.jpg",
+    "img/paginas/p16.jpg"
+  ],
+  "video": ""
+}
