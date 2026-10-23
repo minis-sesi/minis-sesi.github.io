@@ -1,16 +1,52 @@
 {
   "fotos": [
     {
+      "imagem": "img/fotos/oficina-ago-01.jpg",
+      "legenda": "Equipes de robótica da Escola SESI e mentores reunidos para o projeto social"
+    },
+    {
+      "imagem": "img/fotos/oficina-jun-04.jpg",
+      "legenda": "Integrantes da equipe entregando os livretos de atividades do Mini S"
+    },
+    {
+      "imagem": "img/fotos/oficina-ago-02.jpg",
+      "legenda": "Aluno resolvendo a missão de Pensamento Computacional e Pixel Art"
+    },
+    {
+      "imagem": "img/fotos/oficina-ago-03.jpg",
+      "legenda": "Crianças concentradas realizando as atividades do Mini S no PEAL"
+    },
+    {
+      "imagem": "img/fotos/oficina-set-01.jpg",
+      "legenda": "Oficina Maker: montando o chassi e os eixos do carrinho robotizado"
+    },
+    {
+      "imagem": "img/fotos/oficina-set-03.jpg",
+      "legenda": "Alunas testando os carrinhos robotizados construídos na oficina"
+    },
+    {
+      "imagem": "img/fotos/oficina-out-01.jpg",
+      "legenda": "Aluno com seu protótipo finalizado do carrinho robotizado"
+    },
+    {
+      "imagem": "img/fotos/oficina-jun-01.jpg",
+      "legenda": "Apresentação da categoria STEM Racing e demonstração do carro de competição"
+    },
+    {
+      "imagem": "img/fotos/oficina-out-02.jpg",
+      "legenda": "Equipe a caminho da oficina levando os materiais do projeto"
+    },
+    {
+      "imagem": "img/fotos/equipes.jpg",
+      "legenda": "Equipes de robótica da Escola SESI de Jaraguá do Sul"
+    },
+    {
       "imagem": "img/fotos/oficina-1.jpg",
       "legenda": "Integrantes das equipes montando atividades com as crianças"
     },
     {
       "imagem": "img/fotos/oficina-2.jpg",
       "legenda": "Crianças colocando a mão na massa em um encontro do Mini S"
-    },
-    {
-      "imagem": "img/fotos/equipes.jpg",
-      "legenda": "Equipes de robótica da Escola SESI de Jaraguá do Sul"
     }
   ]
 }

@@ -1,6 +1,7 @@
 <script setup>
 import PageHeader from "../components/PageHeader.vue";
-import { site } from "../data/conteudo";
+import GaleriaFotos from "../components/GaleriaFotos.vue";
+import { site, galeria } from "../data/conteudo";
 
 const estrutura = [
   { icone: "📖", titulo: "História em quadrinhos", texto: "Cada aula abre com uma aventura do Bolt que apresenta o desafio do dia." },
@@ -53,7 +54,18 @@ const habilidades = ["Criatividade", "Raciocínio lógico", "Resolução de prob
       </div>
     </section>
 
-    <section class="section">
+    <section v-if="galeria.length" class="section">
+      <div class="wrap">
+        <span class="eyebrow">Registros do projeto</span>
+        <h2>O Mini S na prática</h2>
+        <p class="lead">Confira alguns momentos dos encontros e oficinas realizadas pelas equipes de robótica com as crianças.</p>
+        <div class="gallery-wrap">
+          <GaleriaFotos />
+        </div>
+      </div>
+    </section>
+
+    <section class="section tinted">
       <div class="wrap">
         <span class="eyebrow">O que desenvolvemos</span>
         <h2>Mais do que tecnologia</h2>
