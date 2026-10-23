@@ -16,7 +16,7 @@ const perguntas = [
     r: "As primeiras missões foram pensadas para crianças de 6 a 9 anos. A idade indicada aparece na página de cada aula.",
   },
   {
-    p: "Minha escola ou ONG pode usar, mesmo não sendo do PIAL?",
+    p: "Minha escola ou ONG pode usar, mesmo não sendo do PEAL?",
     r: "Pode, sim! Adoraríamos saber onde o Mini S está sendo aplicado. Mande uma mensagem para a gente nas redes sociais.",
   },
 ];

@@ -31,7 +31,7 @@ const habilidades = ["Criatividade", "Raciocínio lógico", "Resolução de prob
             histórias, desafios e brincadeiras, cada um criado por uma das equipes de robótica. Assim, qualquer professor pode aplicar o módulo sozinho, mesmo sem experiência em robótica.
           </p>
           <p>
-            As aulas são aplicadas nas unidades do <strong>PIAL</strong>, presente em 14 cidades de Santa Catarina, e ficam
+            As aulas são aplicadas nas unidades do <strong>PEAL</strong>, presente em 14 cidades de Santa Catarina, e ficam
             abertas para qualquer escola ou projeto social que queira usar.
           </p>
         </div>

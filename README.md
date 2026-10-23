@@ -1,6 +1,6 @@
 # Mini S
 
-Site do **Mini S**, projeto educacional e social das equipes de robótica da Escola SESI de Jaraguá do Sul. Reúne os 15 encontros (missões do robô Bolt) para que qualquer professor, como os das unidades do PIAL, baixe, imprima e aplique com a turma.
+Site do **Mini S**, projeto educacional e social das equipes de robótica da Escola SESI de Jaraguá do Sul. Reúne os 15 encontros (missões do robô Bolt) para que qualquer professor, como os das unidades do PEAL, baixe, imprima e aplique com a turma.
 
 Feito com [Vue 3](https://vuejs.org/) + [Vite](https://vite.dev/), publicado de graça no GitHub Pages, com painel de administração [Sveltia CMS](https://github.com/sveltia/sveltia-cms) em `/admin`.
 
