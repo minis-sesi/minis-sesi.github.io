@@ -1,0 +1,40 @@
+{
+  "numero": 7,
+  "titulo": "Processo de Engenharia e Aerodinâmica",
+  "equipe": "Scuderia S ATLAS",
+  "serie": "STEM Racing",
+  "modulo": "Engenharia STEM Racing",
+  "resumo": "Como a engenharia melhora um projeto? As crianças aprendem conceitos de aerodinâmica na prática construindo e otimizando aviões de papel para maior distância e tempo de voo.",
+  "idade": "6 a 12 anos",
+  "tempo": "40 a 50 min",
+  "habilidades": [
+    "Pensamento científico",
+    "Aerodinâmica",
+    "Prototipagem",
+    "Trabalho em equipe"
+  ],
+  "objetivos": [
+    "Compreender conceitos básicos de aerodinâmica, sustentação e resistência do ar",
+    "Aplicar o ciclo de engenharia: projetar, testar, avaliar e aprimorar protótipos",
+    "Identificar como alterações de dobras, peso e formato impactam o voo"
+  ],
+  "roteiro": [
+    "Apresentação teórica com demonstrações de modelos de aviões",
+    "Divisão das equipes com apoio dos monitores da Scuderia S ATLAS",
+    "Etapa 1: Desafio de Maior Distância de Voo (ajuste de aerodinâmica)",
+    "Etapa 2: Desafio de Maior Tempo de Permanência no Ar (sustentação)",
+    "Encerramento com análise comparativa dos modelos vencedores"
+  ],
+  "materiais": [
+    "Folhas de papel sulfite A4",
+    "Fita métrica para medição de distância",
+    "Cronômetro para tempo de voo",
+    "Espaço livre amplo (pátio ou quadra)"
+  ],
+  "pdf": "pdf/aula-07-processo-de-engenharia.pdf",
+  "capa": "img/paginas/a07_p01.jpg",
+  "paginas": [
+    "img/paginas/a07_p01.jpg"
+  ],
+  "video": ""
+}

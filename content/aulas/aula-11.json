@@ -1,0 +1,43 @@
+{
+  "numero": 11,
+  "titulo": "Operação BioBuzz",
+  "equipe": "S ROBOTS FTC",
+  "serie": "FIRST Tech Challenge",
+  "modulo": "Estratégia e Cooperação",
+  "resumo": "Inspirada no tema da robótica do BioBuzz, as equipes participam de uma corrida cooperativa de transporte de pólen e néctar com colheres, trabalhando estratégia e pontuação.",
+  "idade": "6 a 12 anos",
+  "tempo": "30 a 45 min",
+  "habilidades": [
+    "Coordenação motora",
+    "Trabalho em equipe",
+    "Estratégia",
+    "Foco"
+  ],
+  "objetivos": [
+    "Vivenciar uma dinâmica inspirada na robótica e na natureza (polinização e colmeias)",
+    "Estimular a tomada de decisão estratégica entre elementos de pontuações diferentes (Pólen vs Néctar)",
+    "Aprimorar equilíbrio, agilidade motora e cooperação em revezamento"
+  ],
+  "roteiro": [
+    "Apresentação da missão BioBuzz e das regras de pontuação (Pólen = 1 ponto, Néctar = 2 pontos)",
+    "Organização das equipes na linha de largada e colmeias posicionadas",
+    "Execução da rodada de 3 minutos de transporte com colher em revezamento",
+    "Contagem dos pontos das colmeias e validação das regras",
+    "Roda de encerramento sobre cooperação, comunicação e estratégias adotadas"
+  ],
+  "materiais": [
+    "1 colher por equipe",
+    "Bolinhas amarelas (representando Pólen - 1 pt)",
+    "Bolinhas azuis (representando Néctar - 2 pts)",
+    "Caixas ou recipientes (representando as Colmeias)",
+    "Marcações para delimitar a Zona das Flores e a linha de largada",
+    "Cronômetro"
+  ],
+  "pdf": "pdf/aula-11-operacao-biobuzz.pdf",
+  "capa": "img/paginas/a11_p01.jpg",
+  "paginas": [
+    "img/paginas/a11_p01.jpg",
+    "img/paginas/a11_p02.jpg"
+  ],
+  "video": ""
+}

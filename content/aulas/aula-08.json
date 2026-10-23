@@ -1,0 +1,39 @@
+{
+  "numero": 8,
+  "titulo": "Gincana das Cores e Cones",
+  "equipe": "S ROBOTS FTC",
+  "serie": "S Robots Explorer",
+  "modulo": "Agilidade e Concentração",
+  "resumo": "Gincana dinâmica de velocidade, atenção e equilíbrio. As crianças respondem a sequências rápidas de comandos de cores enquanto preservam a estabilidade da torre de cones.",
+  "idade": "6 a 10 anos",
+  "tempo": "30 a 40 min",
+  "habilidades": [
+    "Agilidade",
+    "Atenção seletiva",
+    "Controle motor",
+    "Equilíbrio"
+  ],
+  "objetivos": [
+    "Treinar prontidão motora e capacidade de resposta a estímulos sonoros e visuais",
+    "Exercitar equilíbrio e delicadeza no manuseio de objetos empilhados sob pressão de tempo",
+    "Fortalecer o respeito às regras e a convivência em equipe"
+  ],
+  "roteiro": [
+    "Preparação do circuito e empilhamento das torres de cones coloridos",
+    "Explicação dos comandos individuais de cor (ex.: 'pegue o vermelho', 'toque no azul')",
+    "Rodadas de sequência rápida e cores duplas ('vermelho e azul')",
+    "Desafio da torre: agir na velocidade máxima sem derrubar a estrutura",
+    "Roda final de conversa sobre foco e calma sob pressão"
+  ],
+  "materiais": [
+    "Cones ou copos de três cores distintas (vermelho, azul, amarelo)",
+    "Superfície plana ou mesas",
+    "Apito ou comandos de voz dos instrutores"
+  ],
+  "pdf": "pdf/aula-08-gincana-das-cores-e-cones.pdf",
+  "capa": "img/paginas/a08_p01.jpg",
+  "paginas": [
+    "img/paginas/a08_p01.jpg"
+  ],
+  "video": ""
+}

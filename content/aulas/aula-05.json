@@ -1,0 +1,41 @@
+{
+  "numero": 5,
+  "titulo": "Oficina do Inventor - As Formas Perdidas",
+  "equipe": "S ROBOTS FTC",
+  "serie": "S Robots Explorer",
+  "modulo": "Oficina do Inventor",
+  "resumo": "O Bolt precisa de um novo inventor para desvendar seu antigo caderno de projetos. As crianças identificam figuras geométricas nos desenhos e completam desafios visuais.",
+  "idade": "7 a 10 anos",
+  "tempo": "20 a 30 min",
+  "habilidades": [
+    "Sequência",
+    "Atenção",
+    "Raciocínio lógico",
+    "Percepção visual"
+  ],
+  "objetivos": [
+    "Reconhecer figuras geométricas fundamentais em ilustrações compostas",
+    "Relacionar representações bidimensionais a objetos do cotidiano e projetos de robótica",
+    "Exercitar atenção seletiva e precisão motora ao colorir as formas indicadas"
+  ],
+  "roteiro": [
+    "História em quadrinhos: O caderno de projetos do Bolt",
+    "Desenho 01: Caça às formas na locomotiva",
+    "Desenho 02: Identificação de formas no foguete e paisagem",
+    "Conclusão e reflexão sobre desenho técnico e engenharia"
+  ],
+  "materiais": [
+    "Atividade impressa (1 por criança)",
+    "Lápis de cor verde, laranja e vermelho",
+    "Lápis grafite"
+  ],
+  "pdf": "pdf/missao-05-oficina-do-inventor.pdf",
+  "capa": "img/paginas/a05_p01.jpg",
+  "paginas": [
+    "img/paginas/a05_p01.jpg",
+    "img/paginas/a05_p02.jpg",
+    "img/paginas/a05_p03.jpg",
+    "img/paginas/a05_p04.jpg"
+  ],
+  "video": ""
+}

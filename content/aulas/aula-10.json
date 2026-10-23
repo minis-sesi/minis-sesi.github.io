@@ -1,0 +1,43 @@
+{
+  "numero": 10,
+  "titulo": "Carrinho Robotizado de Tampinhas",
+  "equipe": "S ROBOTS FTC",
+  "serie": "S Robots Maker",
+  "modulo": "Mecânica e Sustentabilidade",
+  "resumo": "Construção prática de um carrinho/robô utilizando papelão, palitos e tampinhas plásticas, ensinando conceitos reais de chassi, eixos, atuadores e sensores.",
+  "idade": "6 a 12 anos",
+  "tempo": "45 min a 1 hora",
+  "habilidades": [
+    "Mão na massa",
+    "Mecânica básica",
+    "Sustentabilidade",
+    "Criatividade"
+  ],
+  "objetivos": [
+    "Apresentar as partes fundamentais de um robô: chassi, eixos, rodas e sensores",
+    "Desenvolver coordenação motora fina no corte, montagem e alinhamento mecânico",
+    "Incentivar o reaproveitamento de materiais recicláveis em projetos maker"
+  ],
+  "roteiro": [
+    "Fase 1: Introdução à robótica, chassi e sustentabilidade com protótipo de exemplo",
+    "Fase 2: Montagem do chassi e passagem dos eixos com alinhamento para redução de atrito",
+    "Fase 3: Fixação das rodas de tampinhas e módulos de sensores decorativos",
+    "Fase 4: Personalização visual do robô (rostinho, olhos sensores e numeração)",
+    "Fase 5: Teste na rampa de testes e encerramento com ajustes de engenharia"
+  ],
+  "materiais": [
+    "Pedaços de papelão retangular (chassi)",
+    "2 palitos de madeira ou churrasco (eixos de rotação)",
+    "5 a 6 tampinhas plásticas (rodas e sensores)",
+    "Tesoura sem ponta ou furador (com supervisão)",
+    "Cola quente ou cola de artesanato",
+    "Canetinhas coloridas para personalização"
+  ],
+  "pdf": "pdf/aula-10-carrinho-robotizado-de-tampinhas.pdf",
+  "capa": "img/paginas/a10_p01.jpg",
+  "paginas": [
+    "img/paginas/a10_p01.jpg",
+    "img/paginas/a10_p02.jpg"
+  ],
+  "video": ""
+}

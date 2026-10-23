@@ -1,0 +1,43 @@
+{
+  "numero": 6,
+  "titulo": "O Mundo do STEM Racing",
+  "equipe": "Scuderia S ATLAS",
+  "serie": "STEM Racing",
+  "modulo": "Engenharia STEM Racing",
+  "resumo": "Apresentação do universo do STEM Racing e da Fórmula 1 com testes práticos de tempo de reação, reflexo de largada e concentração motora.",
+  "idade": "6 a 12 anos",
+  "tempo": "40 a 50 min",
+  "habilidades": [
+    "Tempo de reação",
+    "Reflexo",
+    "Concentração",
+    "Coordenação motora"
+  ],
+  "objetivos": [
+    "Apresentar a categoria STEM Racing e o funcionamento de um carro de competição",
+    "Compreender a importância dos reflexos e do tempo de reação em esportes a motor e robótica",
+    "Vivenciar dinâmicas práticas de velocidade de resposta e foco"
+  ],
+  "roteiro": [
+    "Apresentação interativa dos carros do STEM Racing e do sistema de largada",
+    "Dinâmica 1: Morto-Vivo (aquecimento e atenção a comandos)",
+    "Dinâmica 2: Teste de reação com a régua (medição em centímetros)",
+    "Dinâmica 3: Teste de reação com bolinhas em duplas",
+    "Dinâmica 4: O Jogo do Copo (velocidade de preensão)",
+    "Dinâmica 5: Largada competitiva com cronômetro de luzes de F1"
+  ],
+  "materiais": [
+    "Régua de 30 cm",
+    "Bolinhas de tênis ou borracha",
+    "Copos plásticos ou cones",
+    "Dispositivo ou cronômetro com simulação de largada da F1",
+    "Espaço amplo para movimentação"
+  ],
+  "pdf": "pdf/aula-06-o-mundo-do-stem-racing.pdf",
+  "capa": "img/paginas/a06_p01.jpg",
+  "paginas": [
+    "img/paginas/a06_p01.jpg",
+    "img/paginas/a06_p02.jpg"
+  ],
+  "video": ""
+}

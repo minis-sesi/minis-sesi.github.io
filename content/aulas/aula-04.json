@@ -1,0 +1,44 @@
+{
+  "numero": 4,
+  "titulo": "Os Desenhos Perdidos",
+  "equipe": "S ROBOTS FTC",
+  "serie": "S Robots Explorer",
+  "modulo": "Pensamento Computacional",
+  "resumo": "Uma tempestade digital apagou os desenhos dos projetos do Bolt! As crianças usam comandos de passos, setas e coordenadas para reconstruir as figuras em pixel art.",
+  "idade": "7 a 10 anos",
+  "tempo": "20 a 30 min",
+  "habilidades": [
+    "Sequência",
+    "Atenção",
+    "Raciocínio lógico",
+    "Pensamento computacional"
+  ],
+  "objetivos": [
+    "Compreender como computadores interpretam instruções sequenciais",
+    "Seguir códigos de comandos e direções para revelar imagens na malha quadriculada",
+    "Desenvolver foco, atenção aos detalhes e persistência na resolução de problemas"
+  ],
+  "roteiro": [
+    "História em quadrinhos: a tempestade digital na oficina do Bolt",
+    "Desenho 01: Navegação Secreta (reconstrução do submarino em pixel art)",
+    "Desenho 02: O Robô Explorador (comandos de direções)",
+    "Desafio final e registro de conquistas do explorador"
+  ],
+  "materiais": [
+    "Atividade impressa (1 por criança)",
+    "Lápis grafite e borracha",
+    "Lápis de cor ou canetinhas"
+  ],
+  "pdf": "pdf/missao-04-os-desenhos-perdidos.pdf",
+  "capa": "img/paginas/a04_p01.jpg",
+  "paginas": [
+    "img/paginas/a04_p01.jpg",
+    "img/paginas/a04_p02.jpg",
+    "img/paginas/a04_p03.jpg",
+    "img/paginas/a04_p04.jpg",
+    "img/paginas/a04_p05.jpg",
+    "img/paginas/a04_p06.jpg",
+    "img/paginas/a04_p07.jpg"
+  ],
+  "video": ""
+}
