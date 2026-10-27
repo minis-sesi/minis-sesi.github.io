@@ -18,6 +18,26 @@
       "nome": "Sicredi",
       "detalhe": "Patrocínio",
       "logo": "/uploads/sicredi.png"
+    },
+    {
+      "nome": "KRG",
+      "detalhe": "Patrocínio",
+      "logo": "/uploads/krg.png"
+    },
+    {
+      "nome": "Eletropoll",
+      "detalhe": "Patrocínio",
+      "logo": "/uploads/eletropoli.png"
+    },
+    {
+      "nome": "Indusnova",
+      "detalhe": "Patrocínio",
+      "logo": "/uploads/indusnova.png"
+    },
+    {
+      "nome": "Servisupra",
+      "detalhe": "Patrocínio",
+      "logo": "/uploads/servisupra.png"
     }
   ]
 }
