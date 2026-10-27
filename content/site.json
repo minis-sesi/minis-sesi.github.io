@@ -43,6 +43,11 @@
       "nome": "BUBBLE BOX",
       "detalhe": "Patrocínio",
       "logo": "/uploads/bubble-box.png"
+    },
+    {
+      "nome": "TECNOTOK",
+      "detalhe": "Patrocínio",
+      "logo": "/uploads/tecnotok.png"
     }
   ]
 }
