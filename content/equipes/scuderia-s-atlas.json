@@ -1,8 +1,8 @@
 {
-  "ordem": 3,
   "nome": "Scuderia S ATLAS",
   "categoria": "F1 in Schools",
   "descricao": "Escuderia de estudantes que projeta e fabrica carros de Fórmula 1 em miniatura, unindo engenharia, design e aerodinâmica.",
   "instagram": "scuderia.s_atlas",
-  "logo": ""
+  "logo": "/uploads/atlas.png",
+  "ordem": 3
 }
