@@ -1,5 +1,5 @@
 # Publica o site no GitHub Pages a cada push na branch main.
-# No GitHub: Settings > Pages > Source = "GitHub Actions" (só precisa fazer uma vez).
+# Também sincroniza aulas novas e gera capas/páginas faltantes automaticamente.
 name: Publicar site
 
 on:
@@ -21,6 +21,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependências de PDF e sincronizar Drive
+        run: |
+          pip install pypdf pypdfium2 Pillow
+          python scripts/sync_drive.py
       - uses: actions/setup-node@v4
         with:
           node-version: 22

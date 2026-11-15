@@ -1,94 +1,53 @@
 # Tutorial: como publicar aulas no site do Mini S
 
-O site tem um **painel da equipe** onde dá para publicar aulas (PDF), fotos e editar as equipes sem mexer em código.
-Depois de salvar, o site se atualiza sozinho em cerca de **2 minutos**.
+Existem **duas formas** de publicar aulas no site:
+1. **🏆 Pelo Google Drive + Planilha (Recomendado — sem precisar de senha ou conta no GitHub!)**
+2. **🔒 Pelo Painel `/admin` (Opcional — para editar fotos, apoiadores e configurações)**
+
+---
+
+## 🏆 Opção 1: Publicar pelo Google Drive (Sem Login)
+
+O site é sincronizado automaticamente com a pasta compartilhada do **Google Drive do Mini S**:
+👉 **<https://drive.google.com/drive/folders/1TeA6AENeQ5RrVho9R6CdlckK_InAXTpp?usp=sharing>**
+
+### Passo 1: Colocar o PDF na pasta da aula
+1. Abra a pasta **`Atividades e Planos de Aula`** no Google Drive.
+2. Entre na pasta correspondente ao encontro (ex.: `Aula 09_FRC`, `Aula 12_FRC`, `Aula 13_STEM RACING`...).
+3. Envie o arquivo **PDF final da aula** lá dentro.
+
+### Passo 2: Preencher os detalhes na Planilha (Opcional, mas recomendado)
+Para personalizar o título, resumo, objetivos, materiais e vídeo do YouTube sem mexer em código:
+1. Suba o arquivo **`PLANILHA-AULAS-DRIVE.csv`** (que está neste repositório) para a pasta do Google Drive.
+2. Clique com o botão direito nele no Drive → **Abrir com → Planilhas Google (Google Sheets)** e salve como Planilha Google (`Arquivo → Salvar como Planilhas Google`).
+3. Preencha ou edite a linha da aula (separando itens de listas como *Habilidades*, *Objetivos*, *Roteiro* e *Materiais* por `;`).
+
+### Passo 3: Atualização automática do site
+- O robô do site verifica o Google Drive automaticamente **a cada 2 horas** (ou imediatamente quando acionado na aba **Actions → Sincronizar Google Drive** do GitHub).
+- Ele baixa o PDF novo, **gera sozinho a imagem de capa e todas as páginas em alta definição** e publica a aula no site!
+
+---
+
+## 🔒 Opção 2: Usar o Painel `/admin` (Para fotos, equipes e patrocinadores)
 
 Endereço do painel: **`https://minis-sesi.github.io/admin/`**
 (também tem o link **🔒 Área da equipe** no rodapé do site)
 
----
+> 💡 **Novidade:** Se você publicar uma aula pelo `/admin` enviando apenas o **PDF**, o servidor agora gera a **capa e as imagens das páginas automaticamente** durante a publicação!
 
-## Parte 1: Preparar o acesso (só uma vez)
-
-### 1.1 Criar a conta no GitHub
-1. Acesse <https://github.com/signup> e crie uma conta (pode ser com o e-mail da escola).
-2. Envie o seu **nome de usuário do GitHub** para o André.
-3. Você vai receber um **convite por e-mail** para o repositório do Mini S. Clique em **Accept invitation**.
-
-### 1.2 Criar a sua "chave de acesso" (token)
-O token funciona como a senha do painel. Ele é criado uma vez e vale por 1 ano.
-
-1. Entre no GitHub e acesse: <https://github.com/settings/tokens/new>
-2. Preencha:
+### 1. Preparar o acesso ao `/admin` (só uma vez)
+1. Acesse <https://github.com/signup> e crie uma conta.
+2. Envie o seu **nome de usuário do GitHub** para o responsável do repositório e aceite o convite por e-mail.
+3. Acesse <https://github.com/settings/tokens/new> e preencha:
    - **Note** (nome): `Painel Mini S`
    - **Expiration** (validade): `Custom` → escolha uma data daqui a 1 ano
    - **Select scopes** (permissões): marque **somente** `public_repo`
-3. Clique em **Generate token** no fim da página.
-4. **Copie o código que começa com `ghp_`** e guarde num lugar seguro (por exemplo, o gerenciador de senhas do navegador).
-   O GitHub só mostra esse código uma vez.
+4. Clique em **Generate token** e copie o código que começa com `ghp_`.
 
-> ⚠️ Não envie o token por WhatsApp ou e-mail e não compartilhe com ninguém. Se perder, é só criar outro (passo 1.2 de novo).
+### 2. Entrar no painel
+1. Abra `https://minis-sesi.github.io/admin/`.
+2. Clique em **Entrar Usando Token de Acesso** e cole o seu token (`ghp_...`).
 
----
-
-## Parte 2: Entrar no painel
-
-1. Abra o endereço do painel.
-2. Clique em **Entrar Usando Token de Acesso**.
-3. Cole o seu token (`ghp_...`) e confirme.
-
-Na próxima vez o navegador já lembra o login.
-
----
-
-## Parte 3: Publicar uma aula nova
-
-1. No menu da esquerda, clique em **Aulas**.
-2. Clique em **Novo** (ou **Nova Aula**).
-3. Preencha os campos:
-
-| Campo | O que colocar | Obrigatório |
-| --- | --- | --- |
-| **Número da aula** | A posição na trilha (1 a 15) | ✅ |
-| **Título** | Ex.: *Os Projetos Perdidos* | ✅ |
-| **Equipe que criou** | Escolha na lista | |
-| **PDF da aula** | Clique e envie o PDF | ✅ |
-| **Resumo** | 2 ou 3 frases sobre a aula | ✅ |
-| Série, módulo, idade, tempo | Como aparece na capa do material | |
-| Habilidades, objetivos, roteiro, materiais | Ajuda o professor a se preparar | |
-| Imagem de capa / imagens das páginas | **Pode deixar vazio**: o site gera a prévia a partir do PDF | |
-| Vídeo no YouTube | Cole o link do vídeo (pode ser "não listado") | |
-
-4. Clique em **Salvar** (no topo).
-5. Espere cerca de 2 minutos e atualize o site: a aula aparece no lugar do "Em breve" daquele número.
-
-**Para corrigir uma aula:** Aulas → clique na aula → altere → Salvar.
-**Para esconder uma aula sem apagar:** desmarque **Mostrar no site**.
-
----
-
-## Parte 4: Adicionar fotos dos encontros
-
-1. No menu, clique em **Site** → **Galeria de fotos**.
-2. Clique em **Adicionar Foto**, envie a imagem e escreva uma legenda curta.
-3. Salvar.
-
-As 6 primeiras fotos aparecem na página inicial e todas aparecem em **Quem somos**.
-
-> 📸 Antes de publicar fotos de crianças, confirme que existe autorização de uso de imagem dos responsáveis.
-
----
-
-## Parte 5: Equipes, apoiadores e outras configurações
-
-- **Equipes**: nome, categoria, descrição, Instagram e logo de cada equipe. Para incluir a 4ª equipe: Equipes → Novo.
-- **Site → Configurações gerais**: total de encontros planejados (hoje 15), e-mail de contato, PDF com todo o material e parceiros/apoiadores (com logo).
-
----
-
-## Dicas
-
-- **Tamanho dos arquivos:** prefira PDFs com até ~20 MB. Se ficar maior, comprima em <https://www.ilovepdf.com/pt/comprimir_pdf>.
-- **Fotos:** JPG de até ~1 MB carregam rápido no celular.
-- **Errou algo?** Nada se perde: todo salvamento fica registrado no histórico do GitHub e pode ser desfeito pelo André.
-- **O site não atualizou?** Espere mais um pouco e recarregue a página com `Ctrl + F5`.
+### 3. Adicionar fotos dos encontros ou patrocinadores
+- **Galeria de fotos:** clique em **Site → Galeria de fotos** → **Adicionar Foto** → Salvar.
+- **Equipes e Apoiadores:** clique em **Equipes** ou **Site → Configurações gerais** → Salvar.

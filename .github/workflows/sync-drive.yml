@@ -1,0 +1,76 @@
+# Sincroniza automaticamente as aulas e a planilha da pasta do Google Drive
+# Roda a cada 2 horas ou manualmente com 1 clique na aba "Actions" do GitHub.
+name: Sincronizar Google Drive
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências Python
+        run: pip install pypdf pypdfium2 Pillow
+
+      - name: Buscar novas aulas e planilha no Google Drive
+        run: python scripts/sync_drive.py
+
+      - name: Salvar novas aulas no repositório (se houver alterações)
+        id: commit_changes
+        run: |
+          git config user.name "Mini S Bot"
+          git config user.email "actions@github.com"
+          git add content/aulas/ public/pdf/ public/img/paginas/
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Nenhuma alteração nova encontrada no Google Drive."
+          else
+            git commit -m "chore(sync): sincroniza novas aulas e capas a partir do Google Drive"
+            git pull --rebase origin main
+            git push origin main
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.commit_changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Compilar site
+        if: steps.commit_changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          npm ci
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.commit_changes.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        with:
+          path: dist
+
+  deploy:
+    needs: sync
+    if: always() && (needs.sync.result == 'success')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
