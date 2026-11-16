@@ -2,24 +2,25 @@
 
 Site do **Mini S**, projeto educacional e social das equipes de robótica da Escola SESI de Jaraguá do Sul. Reúne os 15 encontros (missões do robô Bolt) para que qualquer professor, como os das unidades do PEAL, baixe, imprima e aplique com a turma.
 
-Feito com [Vue 3](https://vuejs.org/) + [Vite](https://vite.dev/), publicado de graça no GitHub Pages, com painel de administração [Sveltia CMS](https://github.com/sveltia/sveltia-cms) em `/admin`.
+Feito com [Vue 3](https://vuejs.org/) + [Vite](https://vite.dev/), publicado de graça no GitHub Pages e sincronizado automaticamente com a pasta oficial do **Google Drive** do projeto.
 
 ## Como funciona
 
 ```
-content/            ← conteúdo do site (editado pelo painel /admin)
-  aulas/*.json        uma ficha por aula
-  equipes/*.json      uma ficha por equipe
-  galeria.json        fotos dos encontros
-  site.json           total de encontros, e-mail, apoiadores
+content/                  ← conteúdo do site (sincronizado com o Google Drive)
+  aulas/*.json              uma ficha por aula
+  equipes/*.json            uma ficha por equipe
+  galeria.json              fotos dos encontros
+  site.json                 total de encontros, e-mail, apoiadores
 public/
-  admin/              painel da equipe (config.yml define os formulários)
-  uploads/            PDFs e imagens enviados pelo painel
-  pdf/, img/          material inicial
-src/                ← código Vue (abas, componentes, estilos)
+  pdf/, img/paginas/        PDFs e páginas geradas automaticamente das aulas
+  img/fotos/, uploads/      fotos dos encontros e logos de equipes/patrocinadores
+scripts/
+  sync_drive.py             robô que lê os PDFs e a planilha do Google Drive
+src/                      ← código Vue (abas, componentes, estilos)
 ```
 
-Quem publica aulas usa o painel. O passo a passo para a equipe está em **[TUTORIAL-PAINEL.md](TUTORIAL-PAINEL.md)**.
+O passo a passo para publicar novas aulas pelo Google Drive está em **[TUTORIAL-PAINEL.md](TUTORIAL-PAINEL.md)**.
 
 ## Abas do site
 
@@ -35,14 +36,11 @@ Quem publica aulas usa o painel. O passo a passo para a equipe está em **[TUTOR
 
 ```bash
 npm install
+npm run sync   # opcional: sincroniza novas aulas do Google Drive
 npm run dev
 ```
 
-## Colocar no ar (uma vez)
+## Publicação e Sincronização
 
 1. O site fica na organização **`minis-sesi`**, no repositório público **`minis-sesi.github.io`**, branch `main`.
-2. No repositório: **Settings → Pages → Source: GitHub Actions**.
-3. O painel já aponta para `minis-sesi/minis-sesi.github.io` (`public/admin/config.yml`).
-4. Em **Settings → Collaborators** (ou como membros da organização), adicione quem vai usar o painel.
-
-A cada alteração (pelo painel ou por `git push`), o GitHub Actions publica o site em **https://minis-sesi.github.io**.
+2. O workflow **Sincronizar Google Drive** (`.github/workflows/sync-drive.yml`) verifica o Drive automaticamente a cada 2 horas (ou manualmente via aba **Actions** do GitHub) e publica o site em **https://minis-sesi.github.io**.
