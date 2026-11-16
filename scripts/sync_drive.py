@@ -60,8 +60,8 @@ def infer_serie(equipe: str) -> str:
     return "S Robots Explorer"
 
 
-def fetch_drive_folder_items(folder_id: str) -> list[dict]:
-    """Lê os arquivos/pastas de uma pasta pública do Google Drive."""
+def fetch_drive_folder_items(folder_id: str) -> list[dict] | None:
+    """Lê os arquivos/pastas de uma pasta pública do Google Drive. Retorna None em erro de rede."""
     url = f"https://drive.google.com/drive/folders/{folder_id}?usp=sharing"
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
@@ -69,7 +69,7 @@ def fetch_drive_folder_items(folder_id: str) -> list[dict]:
             html = resp.read().decode("utf-8", errors="ignore")
     except Exception as e:
         print(f"[AVISO] Não foi possível acessar a pasta {folder_id}: {e}")
-        return []
+        return None
 
     callbacks = re.findall(r"AF_initDataCallback\(({.*?})\);</script>", html, re.DOTALL)
     if not callbacks:
@@ -180,7 +180,7 @@ def fetch_sheet_overrides() -> dict[int, dict]:
     sheet_id = os.environ.get("GOOGLE_SHEET_ID", "").strip()
     if not sheet_id:
         for fid in (ROOT_DRIVE_FOLDER_ID, ATIVIDADES_FOLDER_ID, CRONOGRAMA_FOLDER_ID):
-            for item in fetch_drive_folder_items(fid):
+            for item in (fetch_drive_folder_items(fid) or []):
                 if "spreadsheet" in item.get("mime", ""):
                     sheet_id = item["id"]
                     print(f"[INFO] Planilha Google detectada no Drive: {item['name']} ({sheet_id})")
@@ -266,22 +266,40 @@ def sync_from_drive(force: bool = False) -> int:
     sheet_overrides = fetch_sheet_overrides()
 
     print("[1/3] Consultando pastas de aulas no Google Drive...")
-    subfolders = fetch_drive_folder_items(ATIVIDADES_FOLDER_ID)
+    subfolders = fetch_drive_folder_items(ATIVIDADES_FOLDER_ID) or []
 
     for folder in sorted(subfolders, key=lambda x: x["name"]):
         m = re.search(r"Aula\s*(\d+)", folder["name"], re.I)
         if not m:
             continue
         aula_num = int(m.group(1))
-        if aula_num in existing and not force:
-            continue
 
         files = fetch_drive_folder_items(folder["id"])
+        if files is None:
+            continue
+
         pdfs = [
             f for f in files
             if f["name"].lower().endswith(".pdf") or "pdf" in f.get("mime", "").lower()
         ]
         if not pdfs:
+            # Se a pasta ficou vazia no Drive (a partir da Aula 4), remove a aula do site
+            if aula_num >= 4 and aula_num in existing:
+                old_json, old_data = existing.pop(aula_num)
+                print(f" -> Pasta Aula {aula_num:02d} vazia no Drive: removendo {old_json.name} (voltando para 'Em breve')...")
+                old_pdf = (old_data.get("pdf") or "").lstrip("/").removeprefix("public/")
+                if old_pdf and (Path("public") / old_pdf).exists():
+                    (Path("public") / old_pdf).unlink()
+                for old_pg in old_data.get("paginas", []):
+                    pg_path = Path("public") / old_pg.lstrip("/").removeprefix("public/")
+                    if pg_path.exists() and pg_path.name.startswith(f"a{aula_num:02d}_"):
+                        pg_path.unlink()
+                if old_json.exists():
+                    old_json.unlink()
+                changes += 1
+            continue
+
+        if aula_num in existing and not force:
             continue
 
         chosen_pdf = pdfs[0]

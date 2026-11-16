@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "Mini S Bot"
           git config user.email "actions@github.com"
-          git add content/aulas/ public/pdf/ public/img/paginas/
+          git add -A content/aulas/ public/pdf/ public/img/paginas/
           if git diff --staged --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "Nenhuma alteração nova encontrada no Google Drive."
