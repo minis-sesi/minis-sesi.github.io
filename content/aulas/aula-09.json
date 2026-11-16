@@ -1,0 +1,27 @@
+{
+  "numero": 9,
+  "titulo": "TESTE-Aula-09-O-Mundo-da-FRC",
+  "equipe": "S ROBOTS FRC",
+  "serie": "FIRST Robotics Competition",
+  "modulo": "",
+  "resumo": "Atividade prática desenvolvida pelas equipes de robótica para aplicação em sala.",
+  "idade": "6 a 12 anos",
+  "tempo": "30 a 45 min",
+  "habilidades": [
+    "Criatividade",
+    "Trabalho em equipe",
+    "Raciocínio lógico"
+  ],
+  "objetivos": [],
+  "roteiro": [],
+  "materiais": [
+    "Atividade impressa ou materiais da oficina"
+  ],
+  "pdf": "pdf/aula-09-teste-aula-09-o-mundo-da-frc.pdf",
+  "capa": "img/paginas/a09_p01.jpg",
+  "paginas": [
+    "img/paginas/a09_p01.jpg",
+    "img/paginas/a09_p02.jpg"
+  ],
+  "video": ""
+}
