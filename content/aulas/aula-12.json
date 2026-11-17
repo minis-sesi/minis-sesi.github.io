@@ -1,0 +1,32 @@
+{
+  "numero": 12,
+  "titulo": "Mini-S-Aula-14.docx",
+  "equipe": "S ROBOTS FRC",
+  "serie": "FIRST Robotics Competition",
+  "modulo": "Sistemas de Movimento",
+  "resumo": "Terceiro encontro — a competição 1 hora e 30 minutos · crianças de 6 a 11 anos Guia completo para quem nunca deu aula de robótica",
+  "idade": "6 a 12 anos",
+  "tempo": "30 a 45 min",
+  "habilidades": [
+    "Criatividade",
+    "Trabalho em equipe",
+    "Raciocínio lógico"
+  ],
+  "objetivos": [],
+  "roteiro": [],
+  "materiais": [
+    "Atividade impressa ou materiais da oficina"
+  ],
+  "pdf": "pdf/aula-12-mini-s-aula-14-docx.pdf",
+  "capa": "img/paginas/a12_p01.jpg",
+  "paginas": [
+    "img/paginas/a12_p01.jpg",
+    "img/paginas/a12_p02.jpg",
+    "img/paginas/a12_p03.jpg",
+    "img/paginas/a12_p04.jpg",
+    "img/paginas/a12_p05.jpg",
+    "img/paginas/a12_p06.jpg",
+    "img/paginas/a12_p07.jpg"
+  ],
+  "video": ""
+}

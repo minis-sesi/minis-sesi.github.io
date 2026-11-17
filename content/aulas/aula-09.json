@@ -1,0 +1,32 @@
+{
+  "numero": 9,
+  "titulo": "Mini-S-Aula-13.docx",
+  "equipe": "S ROBOTS FRC",
+  "serie": "FIRST Robotics Competition",
+  "modulo": "",
+  "resumo": "Segundo encontro — a garra 1 hora e 30 minutos · crianças de 6 a 11 anos Guia completo para quem nunca deu aula de robótica",
+  "idade": "6 a 12 anos",
+  "tempo": "30 a 45 min",
+  "habilidades": [
+    "Criatividade",
+    "Trabalho em equipe",
+    "Raciocínio lógico"
+  ],
+  "objetivos": [],
+  "roteiro": [],
+  "materiais": [
+    "Atividade impressa ou materiais da oficina"
+  ],
+  "pdf": "pdf/aula-09-mini-s-aula-13-docx.pdf",
+  "capa": "img/paginas/a09_p01.jpg",
+  "paginas": [
+    "img/paginas/a09_p01.jpg",
+    "img/paginas/a09_p02.jpg",
+    "img/paginas/a09_p03.jpg",
+    "img/paginas/a09_p04.jpg",
+    "img/paginas/a09_p05.jpg",
+    "img/paginas/a09_p06.jpg",
+    "img/paginas/a09_p07.jpg"
+  ],
+  "video": ""
+}
