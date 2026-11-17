@@ -1,0 +1,27 @@
+{
+  "numero": 13,
+  "titulo": "RADAR Tech Difusão Tecnológica e Produtividade na Indústria",
+  "equipe": "Scuderia S ATLAS",
+  "serie": "STEM Racing",
+  "modulo": "Projeto ATLAS",
+  "resumo": "Federação das Indústrias do Estado de Santa Catarina",
+  "idade": "6 a 12 anos",
+  "tempo": "30 a 45 min",
+  "habilidades": [
+    "Criatividade",
+    "Trabalho em equipe",
+    "Raciocínio lógico"
+  ],
+  "objetivos": [],
+  "roteiro": [],
+  "materiais": [
+    "Atividade impressa ou materiais da oficina"
+  ],
+  "pdf": "pdf/aula-13-radar-tech-difusao-tecnologica-e-produtividade-na-industria.pdf",
+  "capa": "img/paginas/a13_p01.jpg",
+  "paginas": [
+    "img/paginas/a13_p01.jpg",
+    "img/paginas/a13_p02.jpg"
+  ],
+  "video": ""
+}
