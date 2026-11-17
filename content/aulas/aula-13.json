@@ -1,0 +1,27 @@
+{
+  "numero": 13,
+  "titulo": "Desafio do Desenho",
+  "equipe": "Scuderia S ATLAS",
+  "serie": "STEM Racing",
+  "modulo": "Projeto ATLAS",
+  "resumo": "Atividade prática desenvolvida pelas equipes de robótica para aplicação em sala.",
+  "idade": "6 a 12 anos",
+  "tempo": "30 a 45 min",
+  "habilidades": [
+    "Criatividade",
+    "Trabalho em equipe",
+    "Raciocínio lógico"
+  ],
+  "objetivos": [],
+  "roteiro": [],
+  "materiais": [
+    "Atividade impressa ou materiais da oficina"
+  ],
+  "pdf": "pdf/aula-13-desafio-do-desenho.pdf",
+  "capa": "img/paginas/a13_p01.jpg",
+  "paginas": [
+    "img/paginas/a13_p01.jpg",
+    "img/paginas/a13_p02.jpg"
+  ],
+  "video": ""
+}
