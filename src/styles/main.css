@@ -239,7 +239,10 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(3, 47, 
 .pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 .pages button { padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); transition: transform 0.15s; }
 .pages button:hover { transform: scale(1.03); }
-.video { aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: 12px; }
+.video { aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: 12px; background: #061c1d; display: block; }
+.video-player { max-height: 520px; object-fit: contain; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16); }
+.video-box { display: flex; flex-direction: column; gap: 12px; }
+.video-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
 .empty-video { border: 2px dashed var(--line); border-radius: 12px; padding: 28px; text-align: center; color: var(--muted); }
 
 /* Visualizador em tela cheia: barra / imagem / navegação, sem nada por cima da imagem */

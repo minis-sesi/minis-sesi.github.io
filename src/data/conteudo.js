@@ -1,5 +1,5 @@
 /*
- * Lê o conteúdo da pasta content/ (editado pelo painel /admin ou à mão).
+ * Lê o conteúdo da pasta content/ (editado pelo painel /admin ou sincronizado do Drive).
  * Nada aqui precisa ser alterado para publicar uma aula nova.
  */
 import siteJson from "../../content/site.json";
@@ -23,6 +23,27 @@ export function youtubeId(valor) {
   return m ? m[1] : String(valor).trim();
 }
 
+// Suporta vídeos locais (.mp4, .webm, .mov) e vídeos do YouTube.
+export function normalizarVideo(valor) {
+  if (!valor) return null;
+  const s = String(valor).trim();
+  if (!s) return null;
+  if (
+    /\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(s) ||
+    s.startsWith("videos/") ||
+    s.startsWith("/videos/") ||
+    s.startsWith("uploads/") ||
+    s.startsWith("/uploads/")
+  ) {
+    return { tipo: "mp4", src: arquivo(s) };
+  }
+  const mYt = s.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
+  if (mYt || /^[\w-]{11}$/.test(s)) {
+    return { tipo: "youtube", id: mYt ? mYt[1] : s };
+  }
+  return { tipo: "mp4", src: arquivo(s) };
+}
+
 const lista = (v) => (Array.isArray(v) ? v.filter(Boolean) : []);
 
 export const site = {
@@ -43,6 +64,7 @@ const publicadas = Object.values(arquivosAulas)
   .filter((a) => a.numero && a.titulo && a.pdf && a.publicada !== false)
   .map((a) => {
     const paginas = lista(a.paginas).map(arquivo);
+    const videoInfo = normalizarVideo(a.video);
     return {
       ...a,
       id: Number(a.numero),
@@ -50,7 +72,8 @@ const publicadas = Object.values(arquivosAulas)
       pdf: arquivo(a.pdf),
       capa: arquivo(a.capa) || paginas[0] || "",
       paginas,
-      video: youtubeId(a.video),
+      video: videoInfo?.tipo === "youtube" ? videoInfo.id : a.video || "",
+      videoInfo,
       habilidades: lista(a.habilidades),
       objetivos: lista(a.objetivos),
       roteiro: lista(a.roteiro),

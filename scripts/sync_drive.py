@@ -9,6 +9,8 @@ Sincronizador Automático: Google Drive + Planilha Google -> Site Mini S
    - Varre as subpastas "Aula 01..." até "Aula 15..." em "Atividades e Planos de Aula".
    - Quando encontra um PDF novo em uma pasta de aula, baixa o PDF para `public/pdf/`,
      renderiza todas as páginas em `public/img/paginas/` e cria/atualiza `content/aulas/aula-XX.json`.
+   - Quando encontra um vídeo `.mp4` na pasta da aula, baixa para `public/videos/aula-XX.mp4`,
+     otimiza com faststart (para reprodução instantânea em qualquer dispositivo) e vincula na aula.
 2. Também verifica todas as aulas já existentes em `content/aulas/*.json`:
    - Se alguma aula tiver PDF mas estiver sem `capa` ou `paginas` (ex.: enviada pelo /admin),
      gera automaticamente a capa e as páginas em JPG a partir do PDF.
@@ -20,6 +22,7 @@ import io
 import json
 import os
 import re
+import struct
 import sys
 import unicodedata
 import urllib.request
@@ -33,6 +36,7 @@ ATIVIDADES_FOLDER_ID = "1xSdiGdEv9prR9mz8UOOJUbd8dODX_jWy"
 CRONOGRAMA_FOLDER_ID = "1L30u-2YkWJxaBaMPw8ieN6_WD-9_OoZU"
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+CONTAINER_ATOMS = {b"moov", b"trak", b"mdia", b"minf", b"dinf", b"stbl", b"edts", b"udta"}
 
 
 def slugify(value: str) -> str:
@@ -60,6 +64,73 @@ def infer_serie(equipe: str) -> str:
     return "S Robots Explorer"
 
 
+def _parse_atoms(buf: bytes, start: int = 0, end: int | None = None):
+    if end is None:
+        end = len(buf)
+    pos = start
+    atoms = []
+    while pos + 8 <= end:
+        size, atype = struct.unpack(">I4s", buf[pos : pos + 8])
+        hdr = 8
+        if size == 1:
+            if pos + 16 > end:
+                break
+            size = struct.unpack(">Q", buf[pos + 8 : pos + 16])[0]
+            hdr = 16
+        elif size == 0:
+            size = end - pos
+        if size < hdr or pos + size > end:
+            break
+        atoms.append((atype, pos, size, hdr))
+        pos += size
+    return atoms
+
+
+def _patch_chunk_offsets(moov_buf: bytearray, start: int, end: int, delta: int):
+    for atype, pos, size, hdr in _parse_atoms(moov_buf, start, end):
+        if atype in CONTAINER_ATOMS:
+            _patch_chunk_offsets(moov_buf, pos + hdr, pos + size, delta)
+        elif atype == b"stco":
+            count = struct.unpack(">I", moov_buf[pos + hdr + 4 : pos + hdr + 8])[0]
+            base = pos + hdr + 8
+            for i in range(count):
+                off = base + i * 4
+                val = struct.unpack(">I", moov_buf[off : off + 4])[0]
+                struct.pack_into(">I", moov_buf, off, val + delta)
+        elif atype == b"co64":
+            count = struct.unpack(">I", moov_buf[pos + hdr + 4 : pos + hdr + 8])[0]
+            base = pos + hdr + 8
+            for i in range(count):
+                off = base + i * 8
+                val = struct.unpack(">Q", moov_buf[off : off + 8])[0]
+                struct.pack_into(">Q", moov_buf, off, val + delta)
+
+
+def make_faststart(path: Path) -> bool:
+    """Move o átomo moov para o início do MP4 para reprodução imediata em qualquer dispositivo."""
+    try:
+        data = path.read_bytes()
+        top = _parse_atoms(data)
+        moov = next((a for a in top if a[0] == b"moov"), None)
+        mdat = next((a for a in top if a[0] == b"mdat"), None)
+        if not moov or not mdat or moov[1] < mdat[1]:
+            return False
+        moov_bytes = bytearray(data[moov[1] : moov[1] + moov[2]])
+        _patch_chunk_offsets(moov_bytes, moov[3], len(moov_bytes), len(moov_bytes))
+        out = bytearray()
+        for atype, pos, size, _ in top:
+            if atype == b"moov":
+                continue
+            if atype == b"mdat":
+                out.extend(moov_bytes)
+            out.extend(data[pos : pos + size])
+        path.write_bytes(bytes(out))
+        return True
+    except Exception as e:
+        print(f"[AVISO] Não foi possível aplicar faststart em {path.name}: {e}")
+        return False
+
+
 def fetch_drive_folder_items(folder_id: str) -> list[dict] | None:
     """Lê os arquivos/pastas de uma pasta pública do Google Drive. Retorna None em erro de rede."""
     url = f"https://drive.google.com/drive/folders/{folder_id}?usp=sharing"
@@ -76,35 +147,18 @@ def fetch_drive_folder_items(folder_id: str) -> list[dict] | None:
         return []
 
     cb = callbacks[3] if len(callbacks) > 3 else callbacks[-1]
-    excluded = {
-        "Name", "A to Z", "Z to A", "Date modified", "New to old",
-        "Modified", "File size", "Size not available", "Drop files here",
-        "or use the “New” button.", ""
-    }
-
-    items_by_id = {}
-    for m in re.finditer(r'\[(?:null,)?"([a-zA-Z0-9_-]{25,50})"', cb):
-        item_id = m.group(1)
-        if item_id == folder_id:
-            continue
-        sub = cb[m.end(): m.end() + 650]
-        fn_match = re.search(r'\[\[\["([^"\\]+)"', sub)
-        mime_match = re.search(r'"(application/[^"]+|video/[^"]+|image/[^"]+)"', sub)
-        if fn_match:
-            fname = fn_match.group(1).strip()
-            if (
-                fname not in excluded
-                and not re.match(r"^\d+ de [a-z]+\.?$", fname, re.I)
-                and not re.match(r"^\d+(?:,\d+)?\s*(?:KB|MB|B|GB)$", fname, re.I)
-            ):
-                mime = mime_match.group(1) if mime_match else ""
-                if item_id not in items_by_id or (not items_by_id[item_id]["mime"] and mime):
-                    items_by_id[item_id] = {
-                        "id": item_id,
-                        "name": fname,
-                        "mime": mime,
-                    }
-    return list(items_by_id.values())
+    pattern = re.compile(
+        r'\[\[null,"([a-zA-Z0-9_-]{25,50})"\],null,null,null,"([^"]+)".*?\[\[\["([^"\\]+)"',
+        re.DOTALL,
+    )
+    items = []
+    seen = set()
+    for m in pattern.finditer(cb):
+        item_id, mime, fname = m.group(1), m.group(2), m.group(3).strip()
+        if item_id != folder_id and item_id not in seen:
+            seen.add(item_id)
+            items.append({"id": item_id, "name": fname, "mime": mime})
+    return items
 
 
 def download_drive_file(file_id: str, dest_path: Path) -> bool:
@@ -112,7 +166,7 @@ def download_drive_file(file_id: str, dest_path: Path) -> bool:
     url = f"https://drive.google.com/uc?id={file_id}&export=download"
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=120) as resp:
             content = resp.read()
         if content[:15].startswith((b"<!DOCTYPE", b"<html")):
             print(f"[AVISO] Arquivo {file_id} retornou página HTML em vez de binário.")
@@ -161,7 +215,6 @@ def extract_pdf_metadata(pdf_path: Path, fallback_title: str) -> dict:
         full_text = "\n".join((p.extract_text() or "") for p in reader.pages[:2])
         lines = [re.sub(r"\s+", " ", l).strip() for l in full_text.splitlines() if l.strip()]
         if lines:
-            # Procura linha descritiva para resumo
             for l in lines:
                 if len(l) > 50 and not l.lower().startswith(("módulo", "tema:", "data:")):
                     resumo = l[:240]
@@ -203,7 +256,6 @@ def fetch_sheet_overrides() -> dict[int, dict]:
     overrides = {}
     reader = csv.DictReader(io.StringIO(csv_text))
     for row in reader:
-        # Normaliza nomes das colunas
         norm = {slugify(k): (v or "").strip() for k, v in row.items() if k}
         num_str = norm.get("numero") or norm.get("aula") or norm.get("n") or ""
         m = re.search(r"\d+", num_str)
@@ -282,8 +334,12 @@ def sync_from_drive(force: bool = False) -> int:
             f for f in files
             if f["name"].lower().endswith(".pdf") or "pdf" in f.get("mime", "").lower()
         ]
+        vids = [
+            f for f in files
+            if f["name"].lower().endswith((".mp4", ".mov", ".webm")) or "video" in f.get("mime", "").lower()
+        ]
+
         if not pdfs:
-            # Se a pasta ficou vazia no Drive (a partir da Aula 4), remove a aula do site
             if aula_num >= 4 and aula_num in existing:
                 old_json, old_data = existing.pop(aula_num)
                 print(f" -> Pasta Aula {aula_num:02d} vazia no Drive: removendo {old_json.name} (voltando para 'Em breve')...")
@@ -299,7 +355,20 @@ def sync_from_drive(force: bool = False) -> int:
                 changes += 1
             continue
 
+        # Se a aula já existe mas tem um vídeo novo na pasta do Drive e ainda não tem vídeo vinculado
         if aula_num in existing and not force:
+            json_path, aula_data = existing[aula_num]
+            if vids and not aula_data.get("video"):
+                vid_rel = f"videos/aula-{aula_num:02d}.mp4"
+                vid_dest = Path("public") / vid_rel
+                if not vid_dest.exists():
+                    print(f" -> Baixando vídeo da Aula {aula_num:02d}: {vids[0]['name']}...")
+                    if download_drive_file(vids[0]["id"], vid_dest):
+                        make_faststart(vid_dest)
+                if vid_dest.exists():
+                    aula_data["video"] = vid_rel
+                    json_path.write_text(json.dumps(aula_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                    changes += 1
             continue
 
         chosen_pdf = pdfs[0]
@@ -314,6 +383,15 @@ def sync_from_drive(force: bool = False) -> int:
         pages = render_pdf_pages(pdf_dest, aula_num)
         meta = extract_pdf_metadata(pdf_dest, chosen_pdf["name"])
         equipe = infer_equipe(folder["name"])
+
+        video_rel = ""
+        if vids:
+            vid_candidate = f"videos/aula-{aula_num:02d}.mp4"
+            vid_dest = Path("public") / vid_candidate
+            print(f" -> Baixando vídeo da Aula {aula_num:02d}: {vids[0]['name']}...")
+            if download_drive_file(vids[0]["id"], vid_dest):
+                make_faststart(vid_dest)
+                video_rel = vid_candidate
 
         aula_data = {
             "numero": aula_num,
@@ -331,7 +409,7 @@ def sync_from_drive(force: bool = False) -> int:
             "pdf": pdf_rel,
             "capa": pages[0] if pages else "",
             "paginas": pages,
-            "video": "",
+            "video": video_rel,
         }
 
         if aula_num in sheet_overrides:

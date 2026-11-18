@@ -20,6 +20,7 @@ defineProps({ aula: { type: Object, required: true } });
       <div class="card-meta">
         <span v-if="aula.idade">👧 {{ aula.idade }}</span>
         <span v-if="aula.tempo">⏱ {{ aula.tempo }}</span>
+        <span v-if="aula.videoInfo">🎬 Vídeo</span>
         <span class="card-link">Ver aula →</span>
       </div>
     </div>

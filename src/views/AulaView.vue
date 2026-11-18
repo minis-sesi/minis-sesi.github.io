@@ -58,6 +58,7 @@ onBeforeUnmount(() => pdf.limpar());
             <span v-if="aula.idade" class="fact">Idade: {{ aula.idade }}</span>
             <span v-if="aula.tempo" class="fact">Tempo: {{ aula.tempo }}</span>
             <span v-if="paginas.length" class="fact">{{ paginas.length }} páginas</span>
+            <span v-if="aula.videoInfo" class="fact">🎬 Vídeo incluído</span>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" :href="aula.pdf" download>⬇ Baixar PDF para imprimir</a>
@@ -94,10 +95,27 @@ onBeforeUnmount(() => pdf.limpar());
 
           <div class="panel">
             <h2>Vídeo de apoio</h2>
+            <div v-if="aula.videoInfo?.tipo === 'mp4'" class="video-box">
+              <video
+                :key="aula.videoInfo.src"
+                class="video video-player"
+                controls
+                playsinline
+                preload="metadata"
+                :poster="aula.capa || paginas[0] || ''"
+              >
+                <source :src="aula.videoInfo.src" type="video/mp4" />
+                Seu navegador não suporta a reprodução de vídeo.
+              </video>
+              <div class="video-actions">
+                <span class="muted">Player compatível com celular, tablet e computador.</span>
+                <a class="btn btn-ghost btn-dark btn-small" :href="aula.videoInfo.src" download>⬇ Baixar vídeo (.mp4)</a>
+              </div>
+            </div>
             <iframe
-              v-if="aula.video"
+              v-else-if="aula.videoInfo?.tipo === 'youtube'"
               class="video"
-              :src="`https://www.youtube-nocookie.com/embed/${aula.video}`"
+              :src="`https://www.youtube-nocookie.com/embed/${aula.videoInfo.id}`"
               :title="`Vídeo da aula ${aula.id}`"
               allowfullscreen
               loading="lazy"
