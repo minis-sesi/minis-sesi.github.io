@@ -355,7 +355,7 @@ def sync_from_drive(force: bool = False) -> int:
                 changes += 1
             continue
 
-        # Se a aula já existe mas tem um vídeo novo na pasta do Drive e ainda não tem vídeo vinculado
+        # Se a aula já existe, sincroniza adição ou remoção de vídeo .mp4 na pasta do Drive
         if aula_num in existing and not force:
             json_path, aula_data = existing[aula_num]
             if vids and not aula_data.get("video"):
@@ -369,6 +369,13 @@ def sync_from_drive(force: bool = False) -> int:
                     aula_data["video"] = vid_rel
                     json_path.write_text(json.dumps(aula_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
                     changes += 1
+            elif not vids and aula_num >= 4 and (aula_data.get("video") or "").startswith("videos/"):
+                old_vid = Path("public") / aula_data["video"]
+                if old_vid.exists():
+                    old_vid.unlink()
+                aula_data["video"] = ""
+                json_path.write_text(json.dumps(aula_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                changes += 1
             continue
 
         chosen_pdf = pdfs[0]

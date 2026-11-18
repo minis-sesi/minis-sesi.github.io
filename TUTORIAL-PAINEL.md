@@ -15,7 +15,8 @@ Dentro dela, abra a pasta **`Atividades e Planos de Aula`**.
 ### 1.1 Publicar uma aula da trilha (Aulas 01 a 15)
 1. Abra a pasta correspondente à aula (por exemplo: `Aula 09_FRC`, `Aula 12_FRC`, `Aula 13_STEM RACING`, `Aula 14_STEM RACING` ou `Aula 15_ S ROBOTS e S ATLAS`).
 2. **Envie o arquivo PDF final da aula** para dentro dessa pasta.
-3. Pronto! O sistema vai identificar o PDF automaticamente, gerar a imagem de capa, converter todas as páginas para visualização no site e liberar o botão de download.
+3. *(Opcional)* Se a aula tiver um **vídeo em formato `.mp4`**, basta soltar o arquivo `.mp4` dentro da mesma pasta da aula!
+4. Pronto! O sistema vai identificar o PDF e o vídeo `.mp4` automaticamente, gerar a imagem de capa, converter todas as páginas para visualização no site, preparar o player de vídeo compatível com qualquer celular/computador e liberar os botões de download.
 
 ### 1.2 Criar uma aula nova além das 15 (ex.: Aula 16, Aula 17...)
 Se quiserem adicionar novos encontros:
